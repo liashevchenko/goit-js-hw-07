@@ -27,23 +27,26 @@ function createMarkUp(galleryArray) {
 createMarkUp(galleryItems);
 
 gallery.addEventListener('click', handlerClick);
-    
+
+let instance;
+
 function handlerClick(event) {
     event.preventDefault();
     if (event.target.classList.contains("gallery__image")) {
-        const instance = basicLightbox.create(`
+        instance = basicLightbox.create(`
             <img src=${event.target.dataset.source}>
-        `).show();
+        `, {
+            onShow: document.addEventListener("keydown", handleKeyDown),
+          
+        });
 
-       function handleKeyDown(event) {
-    console.log("Key pressed:", event.key); // Check if the event is being triggered
-    if (event.key === "Escape") {
-        instance.close(() => console.log('lightbox not visible anymore'));
-        document.removeEventListener("keydown", handleKeyDown);
-        console.log("Modal closed"); // Check if the modal closing code is reached
+        instance.show();
     }
 }
 
-        document.addEventListener("keydown", handleKeyDown);
+function handleKeyDown(event) {
+    if (event.key === "Escape") {
+        instance.close();
+        document.removeEventListener("keydown", handleKeyDown)
     }
 }
