@@ -46,7 +46,6 @@ function handlerClick(event) {
 }
 
 function handleKeyDown(event) {
-    console.log("work")
     if (event.key === "Escape" && instance.visible()) {
         instance.close();
     }
