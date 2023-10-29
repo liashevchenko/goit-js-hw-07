@@ -37,7 +37,7 @@ function handlerClick(event) {
             <img src=${event.target.dataset.source}>
         `, {
             onShow: document.addEventListener("keydown", handleKeyDown),
-            onClose: document.removeEventListener("keyup", handleKeyDown);
+            onClose: document.removeEventListener("keyup", handleKeyDown)
         });
 
         instance.show();
