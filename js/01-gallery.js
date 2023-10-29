@@ -37,16 +37,17 @@ function handlerClick(event) {
             <img src=${event.target.dataset.source}>
         `, {
             onShow: document.addEventListener("keydown", handleKeyDown),
-          
+            onClose: document.removeEventListener("keyup", handleKeyDown);
         });
 
         instance.show();
+        
     }
 }
 
 function handleKeyDown(event) {
-    if (event.key === "Escape") {
+    console.log("work")
+    if (event.key === "Escape" && instance.visible()) {
         instance.close();
-        document.removeEventListener("keydown", handleKeyDown)
     }
 }
